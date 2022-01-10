@@ -9,7 +9,24 @@ const Layout = (props) => {
       </div>
       <div className={styles.main}></div>
       <div className={styles.footer}>
-        Matthew C Wake &copy; 2022 - Based on React
+        <p>
+          &copy; Matthew C Wake 2022 |{" "}
+          <a href="https://mcwake-portfolio.vercel.app">
+            <i className="fab fa-react"></i> Portfolio
+          </a>{" "}
+          |{" "}
+          <a href="https://github.com/mcwake-dev">
+            <i className="fa fa-github"></i> Github
+          </a>{" "}
+          |{" "}
+          <a href="https://github.com/mcwake-dev/nc-news">
+            <i className="fa fa-github"></i> Front-end Source
+          </a>{" "}
+          |{" "}
+          <a href="https://github.com/mcwake-dev/mcw-nc-news">
+            <i className="fa fa-github"></i> Backend Source
+          </a>
+        </p>
       </div>
     </div>
   );
