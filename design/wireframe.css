@@ -1,0 +1,50 @@
+div {
+  border: 1px solid black;
+  margin: 20px;
+}
+
+.layoutContainer {
+  display: grid;
+  grid-template-rows: 75px 1fr 50px;
+  gap: 20px;
+  border: none;
+}
+
+.layoutHeader {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  height: 100%;
+}
+
+.layoutHeader h1 {
+  padding-left: 20px;
+}
+
+.layoutHeader nav {
+  text-align: right;
+}
+
+.layoutMain {
+  min-height: calc(100vh - 125px);
+}
+
+.layoutFooter {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.userCard {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.userCardImg {
+  border: none;
+}
+
+.userCardDetails {
+  border: none;
+}
