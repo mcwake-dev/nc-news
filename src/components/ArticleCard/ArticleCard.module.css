@@ -1,9 +1,14 @@
+.articleContainer {
+  margin: 10px;
+}
+
 .articleCard {
   -webkit-box-shadow: inset 0px -16px 15px 5px #000000;
   box-shadow: inset 0px -16px 15px -15px #000000;
-  padding: 20px;
-  margin: 20px;
   height: 100%;
+  background-color: #f3dfc1;
+  padding: 20px;
+  overflow-y: hidden;
 }
 
 .articleTitle {
@@ -21,7 +26,7 @@
 .articleTopic {
   display: grid;
   align-items: center;
-  background-color: red;
+  background-color: #793430;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
@@ -60,13 +65,17 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   column-gap: 10px;
-  height: 30%;
+  height: 100%;
   margin-left: -15px;
 }
 
 .fakeContent div {
   padding: 10px;
   margin: 10px;
-  background-color: lightslategray;
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(211, 205, 196, 1) 80%
+  );
   width: 100%;
 }
