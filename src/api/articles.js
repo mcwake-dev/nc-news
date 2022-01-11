@@ -1,9 +1,9 @@
-const API = "https://mcw-nc-news.herokuapp.com/api";
+import { API } from "./constants";
 
 export const getArticles = async (topic, sort, order) => {
   const url = new URL(`${API}/articles`);
 
-  if (topic) {
+  if (topic && topic !== "all") {
     url.searchParams.append("topic", topic);
   }
 
