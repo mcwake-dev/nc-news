@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import TopicBanner from "../TopicBanner";
 
 import styles from "./ArticleCard.module.css";
 
@@ -11,15 +12,15 @@ const ArticleCard = ({
     title,
     topic,
     votes,
+    body,
   },
+  children,
 }) => {
   return (
     <div className={styles.articleContainer}>
       <Link to={`/article/${article_id}`}>
         <div className={styles.articleCard}>
-          <div className={styles.articleTopic}>
-            <h2>{topic} News</h2>
-          </div>
+          <TopicBanner title={topic} />
           <hr className={styles.dateBar} />
           <div className={styles.articleData}>
             <div className={styles.date}>
@@ -31,11 +32,8 @@ const ArticleCard = ({
           <hr />
           <div className={styles.articleTitle}>{title}</div>
           <div className={styles.articleAuthor}>- By {author} -</div>
-          <div className={styles.fakeContent}>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
+          <div className={styles.articleBody}>{body}</div>
+          {children}
         </div>
       </Link>
     </div>

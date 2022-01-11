@@ -4,6 +4,9 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 10vw;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .spinner {
@@ -13,6 +16,7 @@
   width: 120px;
   height: 120px;
   animation: spin 2s linear infinite;
+  margin-bottom: 20px;
 }
 
 @keyframes spin {
