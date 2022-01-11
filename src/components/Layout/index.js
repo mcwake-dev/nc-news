@@ -1,13 +1,18 @@
+import { Outlet } from "react-router-dom";
 import styles from "./Layout.module.css";
+import Header from "../Header";
+import Nav from "../Nav";
 
 const Layout = (props) => {
   return (
     <div className={styles.app}>
       <div className={styles.header}>
-        <h1>📰 NC News</h1>
-        <nav></nav>
+        <Header />
+        <Nav />
       </div>
-      <div className={styles.main}></div>
+      <div className={styles.main}>
+        <Outlet />
+      </div>
       <div className={styles.footer}>
         <p>
           &copy; Matthew C Wake 2022 |{" "}

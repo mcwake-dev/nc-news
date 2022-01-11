@@ -7,17 +7,15 @@ const Loading = (WrappedComponent, loadingMessage) => {
 
     return (
       <>
-        {isLoading && (
+        <div className={isLoading ? styles.visible : styles.invisible}>
           <div className={styles.loader}>
             <div className={styles.spinner}></div>
             <p>{loadingMessage}</p>
           </div>
-        )}
-        <WrappedComponent
-          {...props}
-          setIsLoading={setIsLoading}
-          isLoading={isLoading}
-        />
+        </div>
+        <div className={isLoading ? styles.invisible : styles.visible}>
+          <WrappedComponent {...props} setIsLoading={setIsLoading} />
+        </div>
       </>
     );
   }
