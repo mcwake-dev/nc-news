@@ -15,10 +15,11 @@ const ArticleControls = ({ setIsLoading }) => {
     getTopics()
       .then((newTopics) => {
         setTopics(newTopics);
-        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   }, [setTopics, setIsLoading]);

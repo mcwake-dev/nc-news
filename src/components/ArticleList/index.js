@@ -15,10 +15,11 @@ const ArticleList = ({ setIsLoading }) => {
     getArticles(topic, sort, order)
       .then((newArticles) => {
         setArticles(newArticles);
-        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   }, [order, setIsLoading, sort, topic]);
