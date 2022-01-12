@@ -11,6 +11,13 @@
   padding: 20px;
 }
 
+.articleData {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .articleCard hr:first-of-type {
   margin-top: 5px;
 }
@@ -27,16 +34,10 @@
   text-align: center;
 }
 
-.articleData {
-  display: grid;
-  grid-template-columns: 1.7fr 1fr 1fr;
-}
-
 .articleBody p {
   padding: 10px;
 }
 
 aside {
-  border-left: 1px solid black;
   padding: 10px;
 }

@@ -1,9 +1,18 @@
 import TopicBanner from "../TopicBanner";
-
+import VoteControls from "../VoteControls";
 import styles from "./ArticleCard.module.css";
 
 const ArticleCard = ({
-  article: { author, comment_count, created_at, title, topic, votes, body },
+  article: {
+    article_id,
+    author,
+    comment_count,
+    created_at,
+    title,
+    topic,
+    votes,
+    body,
+  },
   children,
 }) => {
   return (
@@ -16,8 +25,14 @@ const ArticleCard = ({
             <div className={styles.date}>
               {new Date(created_at).toLocaleString()}
             </div>
-            <div className={styles.votes}>Votes: {votes}</div>
-            <div className={styles.comments}>Comments: {comment_count}</div>
+            <div className={styles.votes}>
+              <VoteControls
+                voteType={"article"}
+                item_id={article_id}
+                votes={votes}
+              />
+            </div>
+            <div className={styles.comments}>{comment_count} Comments</div>
           </div>
           <hr />
           <div className={styles.articleTitle}>{title}</div>
