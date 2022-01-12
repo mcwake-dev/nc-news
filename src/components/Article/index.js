@@ -13,7 +13,6 @@ const Article = ({ setIsLoading }) => {
   useEffect(() => {
     getArticle(article_id)
       .then((newArticle) => {
-        console.log(newArticle);
         setArticle(newArticle);
       })
       .catch((err) => {

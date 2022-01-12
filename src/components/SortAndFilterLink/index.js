@@ -20,6 +20,8 @@ const SortAndFilterLink = ({ isCurrent, param, title, linkType }) => {
         sort || "created_at"
       }/order/${param}`;
       break;
+    default:
+      throw new Error("Invalid link type!");
   }
 
   return (

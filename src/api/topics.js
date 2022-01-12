@@ -1,9 +1,10 @@
+import axios from "axios";
+
 import { API } from "./constants";
 
 export const getTopics = async () => {
   const url = new URL(`${API}/topics`);
-  const response = await fetch(url);
-  const data = await response.json();
+  const response = await axios.get(url);
 
-  return data.topics;
+  return response.data.topics;
 };
