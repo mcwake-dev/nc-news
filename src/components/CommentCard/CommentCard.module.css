@@ -1,0 +1,42 @@
+.commentCard {
+  margin-bottom: 20px;
+}
+
+.commentCardHeader {
+  display: grid;
+  grid-template-columns: 125px 1fr 1fr;
+  align-items: center;
+}
+
+.commentDate {
+  text-align: right;
+}
+
+.voteControls {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.voteControls span {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: white;
+  border: 1px solid black;
+  display: inline;
+}
+
+.voteControls button {
+  border: 1px solid black;
+  width: 2rem;
+  background: white;
+}
+
+.voteControls button:first-of-type {
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.voteControls button:last-of-type {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}

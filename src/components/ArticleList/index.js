@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import Loading from "../Loading";
 import ArticleCard from "../ArticleCard";
@@ -29,7 +29,9 @@ const ArticleList = ({ setIsLoading }) => {
       <ArticleControls />
       <div className={styles.articleList}>
         {articles.map((article) => (
-          <ArticleCard key={article.article_id} article={article} />
+          <Link key={article.article_id} to={`/article/${article.article_id}`}>
+            <ArticleCard article={article} />
+          </Link>
         ))}
       </div>
     </>

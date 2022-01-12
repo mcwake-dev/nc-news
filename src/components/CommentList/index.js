@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import CommentCard from "../CommentCard";
 
 import { getArticleComments } from "../../api/articles";
+import styles from "./CommentList.module.css";
 import Loading from "../Loading";
 
 const CommentList = ({ article_id, setIsLoading }) => {
@@ -9,7 +11,6 @@ const CommentList = ({ article_id, setIsLoading }) => {
   useEffect(() => {
     getArticleComments(article_id)
       .then((newComments) => {
-        console.log(newComments);
         setComments(newComments);
       })
       .catch((err) => {
@@ -19,7 +20,13 @@ const CommentList = ({ article_id, setIsLoading }) => {
         setIsLoading(false);
       });
   }, [setComments, article_id, setIsLoading]);
-  return <div>CommentList</div>;
+  return (
+    <section className={styles.commentList}>
+      {comments.map((comment) => (
+        <CommentCard key={comment.comment_id} comment={comment} />
+      ))}
+    </section>
+  );
 };
 
 export default Loading(CommentList, "Loading comments...");
