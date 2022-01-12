@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+import { deleteArticle } from "../../api/articles";
 import TopicBanner from "../TopicBanner";
 import VoteControls from "../VoteControls";
+import Loading from "../Loading";
 import styles from "./ArticleCard.module.css";
+import { DUMMY_USERNAME as username } from "../../api/constants";
 
 const ArticleCard = ({
   article: {
@@ -14,7 +22,27 @@ const ArticleCard = ({
     body,
   },
   children,
+  setIsLoading,
 }) => {
+  const navigate = useNavigate();
+  const deleteThisArticle = () => {
+    setIsLoading(true);
+    deleteArticle(article_id)
+      .then((status) => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    setIsLoading(false);
+  });
+
   return (
     <div className={styles.articleContainer}>
       <article className={styles.articleCard}>
@@ -26,11 +54,15 @@ const ArticleCard = ({
               {new Date(created_at).toLocaleString()}
             </div>
             <div className={styles.votes}>
-              <VoteControls
-                voteType={"article"}
-                item_id={article_id}
-                votes={votes}
-              />
+              {body ? (
+                <VoteControls
+                  voteType={"article"}
+                  item_id={article_id}
+                  votes={votes}
+                />
+              ) : (
+                `Votes: ${votes}`
+              )}
             </div>
             <div className={styles.comments}>{comment_count} Comments</div>
           </div>
@@ -39,7 +71,14 @@ const ArticleCard = ({
           <div className={styles.articleAuthor}>- By {author} -</div>
         </header>
         <main className={styles.articleBody}>
-          <p>{body}</p>
+          <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
+          {author === username ? (
+            <button onClick={(ev) => deleteThisArticle()}>
+              Delete Article
+            </button>
+          ) : (
+            ""
+          )}
           <aside>{children}</aside>
         </main>
       </article>
@@ -47,4 +86,4 @@ const ArticleCard = ({
   );
 };
 
-export default ArticleCard;
+export default Loading(ArticleCard, "Deleting Article...");

@@ -12,3 +12,4 @@ export const VALID_ORDERS = [
   { title: "Descending", param: "desc" },
   { title: "Ascending", param: "asc" },
 ];
+export const DUMMY_USERNAME = "happyamy2016";

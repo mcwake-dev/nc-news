@@ -4,8 +4,9 @@ import Loading from "../Loading";
 import styles from "./CommentForm.module.css";
 import { postComment } from "../../api/articles";
 import { useEffect } from "react/cjs/react.development";
+import { DUMMY_USERNAME as username } from "../../api/constants";
 
-const CommentForm = ({ article_id, username, setIsLoading, setComments }) => {
+const CommentForm = ({ article_id, setIsLoading, setComments }) => {
   const [body, setBody] = useState("");
 
   const validateAndPostComment = () => {

@@ -1,0 +1,28 @@
+.newArticle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.newArticleForm {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 30px 30px 1fr;
+  row-gap: 10px;
+  align-items: center;
+}
+
+.newArticleForm label {
+  text-align: right;
+  margin-right: 10px;
+}
+
+.newArticleForm textarea {
+  height: 100%;
+}
+
+.newArticleForm button {
+  grid-column-start: 2;
+}
+
+.newArticlePreview {
+}

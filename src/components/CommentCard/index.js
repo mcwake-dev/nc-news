@@ -1,10 +1,10 @@
 import styles from "./CommentCard.module.css";
 import VoteControls from "../VoteControls";
 import { deleteComment } from "../../api/comments";
+import { DUMMY_USERNAME as username } from "../../api/constants";
 
 const CommentCard = ({
   comment: { author, body, comment_id, created_at, votes },
-  username,
   setComments,
 }) => {
   const deleteMyComment = () => {

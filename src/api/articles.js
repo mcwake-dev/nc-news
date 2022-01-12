@@ -39,13 +39,12 @@ export const getArticleComments = async (article_id) => {
 export const setVotes = async (article_id, inc_votes) => {
   const url = new URL(`${API}/articles/${article_id}`);
   const response = await axios.patch(url, { inc_votes });
-  const data = await response.json();
 
   if (response.status !== 200) {
     throw new Error("Voting failed!");
   }
 
-  return data;
+  return response.data.comment;
 };
 
 export const postComment = async (article_id, username, commentBody) => {
@@ -57,4 +56,31 @@ export const postComment = async (article_id, username, commentBody) => {
   }
 
   return response.data.comment;
+};
+
+export const deleteArticle = async (article_id) => {
+  const url = new URL(`${API}/articles/${article_id}`);
+  const response = await axios.delete(url);
+
+  if (response.status !== 204) {
+    throw new Error("Delete Article failed!");
+  }
+
+  return response.status;
+};
+
+export const postArticle = async (author, title, body, topic) => {
+  const url = new URL(`${API}/articles`);
+  const response = await axios.post(url, {
+    author,
+    title,
+    body,
+    topic,
+  });
+
+  if (response.status !== 201) {
+    throw new Error("Post Article failed!");
+  }
+
+  return response.data.article;
 };

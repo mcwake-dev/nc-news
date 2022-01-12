@@ -4,6 +4,7 @@ import "./App.module.css";
 import Layout from "../Layout";
 import ArticleList from "../ArticleList";
 import Article from "../Article";
+import NewArticle from "../NewArticle";
 import NotFound from "../NotFound";
 
 function App() {
@@ -15,7 +16,10 @@ function App() {
           path="topic/:topic/sort-by/:sort/order/:order"
           element={<ArticleList />}
         />
-        <Route path="article/:article_id" element={<Article />} />
+        <Route path="/articles">
+          <Route path="new" element={<NewArticle />} />
+          <Route path=":article_id" element={<Article />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

@@ -29,7 +29,7 @@ const ArticleList = ({ setIsLoading }) => {
       <ArticleControls />
       <div className={styles.articleList}>
         {articles.map((article) => (
-          <Link key={article.article_id} to={`/article/${article.article_id}`}>
+          <Link key={article.article_id} to={`/articles/${article.article_id}`}>
             <ArticleCard article={article} />
           </Link>
         ))}
