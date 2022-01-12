@@ -34,7 +34,12 @@ const CommentList = ({ article_id, setIsLoading }) => {
       </section>
       <section className={styles.commentList}>
         {comments.map((comment) => (
-          <CommentCard key={comment.comment_id} comment={comment} />
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            username={DUMMY_USERNAME}
+            setComments={setComments}
+          />
         ))}
       </section>
     </>

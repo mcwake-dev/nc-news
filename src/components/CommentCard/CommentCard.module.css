@@ -11,3 +11,19 @@
 .commentDate {
   text-align: right;
 }
+
+.commentCard footer {
+  display: grid;
+  margin-top: 10px;
+  align-items: center;
+  justify-items: center;
+}
+
+.commentCard footer button {
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid white;
+  background-color: #793430;
+  color: white;
+  font-weight: bold;
+}

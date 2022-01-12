@@ -11,3 +11,14 @@ export const setVotes = async (comment_id, inc_votes) => {
 
   return response.data.comment;
 };
+
+export const deleteComment = async (comment_id) => {
+  const url = new URL(`${API}/comments/${comment_id}`);
+  const response = await axios.delete(url);
+
+  if (response.status !== 204) {
+    throw new Error("Delete Comment failed!");
+  }
+
+  return response.status;
+};

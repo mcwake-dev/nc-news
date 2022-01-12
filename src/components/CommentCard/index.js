@@ -1,12 +1,29 @@
 import styles from "./CommentCard.module.css";
 import VoteControls from "../VoteControls";
+import { deleteComment } from "../../api/comments";
 
 const CommentCard = ({
   comment: { author, body, comment_id, created_at, votes },
+  username,
+  setComments,
 }) => {
+  const deleteMyComment = () => {
+    deleteComment(comment_id)
+      .then((status) => {
+        setComments((current) =>
+          current.filter((comment) => comment.comment_id !== comment_id)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally();
+  };
+
   return (
     <article className={styles.commentCard}>
       <hr />
+
       <header className={styles.commentCardHeader}>
         <VoteControls item_id={comment_id} votes={votes} voteType={"comment"} />
         <div>
@@ -18,7 +35,15 @@ const CommentCard = ({
       </header>
       <hr />
       <main>{body}</main>
-      <footer></footer>
+      <footer>
+        {author === username ? (
+          <button onClick={(ev) => deleteMyComment()}>
+            Delete This Comment
+          </button>
+        ) : (
+          ""
+        )}
+      </footer>
     </article>
   );
 };
