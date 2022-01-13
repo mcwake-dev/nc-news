@@ -2,7 +2,7 @@ import styles from "./Loading.module.css";
 import { useState } from "react";
 
 const Loading = (WrappedComponent, loadingMessage, startLoading) => {
-  function HOC(props) {
+  function LoadingHOC(props) {
     const [isLoading, setIsLoading] = useState(startLoading);
     const [error, setError] = useState("");
 
@@ -28,7 +28,7 @@ const Loading = (WrappedComponent, loadingMessage, startLoading) => {
     );
   }
 
-  return HOC;
+  return LoadingHOC;
 };
 
 export default Loading;

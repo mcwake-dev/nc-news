@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CommentCard from "../CommentCard";
 
+import { DUMMY_USERNAME as username } from "../../api/constants";
 import { getArticleComments } from "../../api/articles";
 import styles from "./CommentList.module.css";
 import Loading from "../Loading";
@@ -8,7 +9,6 @@ import CommentForm from "../CommentForm";
 
 const CommentList = ({ article_id, setIsLoading, setError }) => {
   const [comments, setComments] = useState([]);
-  const DUMMY_USERNAME = "happyamy2016";
 
   useEffect(() => {
     setError(null);
@@ -29,7 +29,7 @@ const CommentList = ({ article_id, setIsLoading, setError }) => {
       <section className={styles.commentForm}>
         <CommentForm
           article_id={article_id}
-          username={DUMMY_USERNAME}
+          username={username}
           setComments={setComments}
           comments={comments}
         />
@@ -39,7 +39,7 @@ const CommentList = ({ article_id, setIsLoading, setError }) => {
           <CommentCard
             key={comment.comment_id}
             comment={comment}
-            username={DUMMY_USERNAME}
+            username={username}
             setComments={setComments}
           />
         ))}

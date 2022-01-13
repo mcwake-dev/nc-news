@@ -58,7 +58,7 @@ const ArticleCard = ({
                   votes={votes}
                 />
               ) : (
-                `Votes: ${votes}`
+                `${votes} Votes`
               )}
             </div>
             <div className={styles.comments}>{comment_count} Comments</div>

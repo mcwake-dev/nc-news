@@ -8,12 +8,12 @@ import { getArticles } from "../../api/articles";
 import styles from "./ArticleList.module.css";
 
 const ArticleList = ({ setIsLoading, setError }) => {
-  const { topic, sort, order } = useParams();
+  const { author, topic, sort, order } = useParams();
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     setError(null);
-    getArticles(topic, sort, order)
+    getArticles(author, topic, sort, order)
       .then((newArticles) => {
         setArticles(newArticles);
       })
@@ -23,7 +23,7 @@ const ArticleList = ({ setIsLoading, setError }) => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [order, setIsLoading, setError, sort, topic]);
+  }, [author, order, setIsLoading, setError, sort, topic]);
 
   return (
     <>

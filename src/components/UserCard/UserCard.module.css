@@ -1,0 +1,58 @@
+.userCard {
+  display: grid;
+  grid-template-areas:
+    "avatar username username"
+    "avatar userdata userdata";
+  grid-template-columns: 200px 1fr;
+  column-gap: 30px;
+  justify-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 80vw;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.username {
+  grid-area: username;
+  width: 100%;
+}
+
+.avatar {
+  grid-area: avatar;
+  width: 200px;
+  height: 200px;
+  display: grid;
+  justify-items: center;
+}
+
+.avatar img {
+  height: 100%;
+  max-width: 100%;
+  width: auto;
+}
+
+.userData {
+  grid-area: userdata;
+  display: grid;
+  grid-template-areas:
+    "name     name"
+    "articles comments"
+    "articles comments";
+  column-gap: 20px;
+}
+
+.name {
+  grid-area: name;
+  text-align: center;
+}
+
+.articles {
+  grid-area: articles;
+}
+
+.comments {
+  grid-area: comments;
+}

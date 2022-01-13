@@ -2,8 +2,12 @@ import axios from "axios";
 
 import { API } from "./constants";
 
-export const getArticles = async (topic, sort, order) => {
+export const getArticles = async (author, topic, sort, order) => {
   const url = new URL(`${API}/articles`);
+
+  if (author && author !== "all") {
+    url.searchParams.append("author", author);
+  }
 
   if (topic && topic !== "all") {
     url.searchParams.append("topic", topic);

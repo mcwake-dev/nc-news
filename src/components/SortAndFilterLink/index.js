@@ -3,20 +3,27 @@ import { useParams, Link } from "react-router-dom";
 import styles from "./SortAndFilterLink.module.css";
 
 const SortAndFilterLink = ({ isCurrent, param, title, linkType }) => {
-  const { topic, sort, order } = useParams();
+  const { author, topic, sort, order } = useParams();
   let to;
 
   switch (linkType) {
+    case "author":
+      to = `/author/${param}/topic/${topic || "all"}/sort-by/${
+        sort || "created_at"
+      }/order/${order || "desc"}`;
+      break;
     case "topic":
-      to = `/topic/${param}/sort-by/${sort || "created_at"}/order/${
-        order || "desc"
-      }`;
+      to = `/author/${author || "all"}/topic/${param}/sort-by/${
+        sort || "created_at"
+      }/order/${order || "desc"}`;
       break;
     case "sort":
-      to = `/topic/${topic || "all"}/sort-by/${param}/order/${order || "desc"}`;
+      to = `/author/${author || "all"}/topic/${
+        topic || "all"
+      }/sort-by/${param}/order/${order || "desc"}`;
       break;
     case "order":
-      to = `/topic/${topic || "all"}/sort-by/${
+      to = `/author/${author || "all"}/topic/${topic || "all"}/sort-by/${
         sort || "created_at"
       }/order/${param}`;
       break;

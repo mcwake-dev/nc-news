@@ -6,9 +6,11 @@ import { VALID_ORDERS, VALID_SORTS } from "../../api/constants";
 import Loading from "../Loading";
 import SortAndFilterLink from "../SortAndFilterLink";
 import styles from "./ArticleControls.module.css";
+import { getUsers } from "../../api/users";
 
 const ArticleControls = ({ setIsLoading, setError }) => {
-  const { topic, sort, order } = useParams();
+  const { author, topic, sort, order } = useParams();
+  const [authors, setAuthors] = useState([]);
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
@@ -25,54 +27,94 @@ const ArticleControls = ({ setIsLoading, setError }) => {
       });
   }, [setTopics, setIsLoading, setError]);
 
+  useEffect(() => {
+    setError(null);
+    getUsers()
+      .then((newAuthors) => {
+        setAuthors(newAuthors);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [setAuthors, setIsLoading, setError]);
+
   return (
-    <details>
+    <details className={styles.articleControlsContainer}>
       <summary>Sort &amp; Filter</summary>
       <div className={styles.articleControls}>
-        <div className={styles.topics}>
-          Filter by topic:{" "}
-          <SortAndFilterLink
-            key={"all"}
-            isCurrent={topic === "all"}
-            title="All"
-            param={"all"}
-            linkType={"topic"}
-          />
-          {topics.map(({ slug }) => (
+        <div className={styles.filterContainer}>
+          <h4>Filter by author: </h4>
+          <div className={styles.filters}>
             <SortAndFilterLink
-              key={slug}
-              title={slug}
-              isCurrent={topic === slug}
-              param={slug}
+              key={"all"}
+              isCurrent={author === "all"}
+              title="All"
+              param={"all"}
+              linkType={"author"}
+            />
+            {authors.map(({ username }) => (
+              <SortAndFilterLink
+                key={username}
+                isCurrent={author === username}
+                title={username}
+                param={username}
+                linkType={"author"}
+              />
+            ))}
+          </div>
+        </div>
+        <div className={styles.filterContainer}>
+          <h4>Filter by topic: </h4>
+          <div className={styles.filters}>
+            <SortAndFilterLink
+              key={"all"}
+              isCurrent={topic === "all"}
+              title="All"
+              param={"all"}
               linkType={"topic"}
             />
-          ))}
+
+            {topics.map(({ slug }) => (
+              <SortAndFilterLink
+                key={slug}
+                title={slug}
+                isCurrent={topic === slug}
+                param={slug}
+                linkType={"topic"}
+              />
+            ))}
+          </div>
         </div>
-        <br />
-        <div className={styles.sorts}>
-          Sort by:{" "}
-          {VALID_SORTS.map((sortOption) => (
-            <SortAndFilterLink
-              key={sortOption.param}
-              title={sortOption.title}
-              isCurrent={sortOption.param === sort}
-              param={sortOption.param}
-              linkType={"sort"}
-            />
-          ))}
+        <div className={styles.filterContainer}>
+          <h4>Sort by: </h4>
+          <div className={styles.filters}>
+            {VALID_SORTS.map((sortOption) => (
+              <SortAndFilterLink
+                key={sortOption.param}
+                title={sortOption.title}
+                isCurrent={sortOption.param === sort}
+                param={sortOption.param}
+                linkType={"sort"}
+              />
+            ))}
+          </div>
         </div>
-        <br />
-        <div className={styles.order}>
-          Order by:{" "}
-          {VALID_ORDERS.map((orderOption) => (
-            <SortAndFilterLink
-              key={orderOption.param}
-              title={orderOption.title}
-              isCurrent={orderOption.param === order}
-              param={orderOption.param}
-              linkType={"order"}
-            />
-          ))}
+        <div className={styles.filterContainer}>
+          <h4>Order by: </h4>
+          <div className={styles.filters}>
+            {VALID_ORDERS.map((orderOption) => (
+              <SortAndFilterLink
+                key={orderOption.param}
+                title={orderOption.title}
+                isCurrent={orderOption.param === order}
+                param={orderOption.param}
+                linkType={"order"}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </details>

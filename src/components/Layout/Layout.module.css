@@ -1,20 +1,63 @@
 .app {
   display: grid;
-  grid-template-rows: 75px 1fr 25px;
+  grid-template-rows: 60px 1fr 25px;
 }
 
 .header {
   display: grid;
   grid-template-columns: 300px 1fr;
-  padding: 10px;
+  align-items: center;
+  margin-left: 10px;
+  background-color: #793430;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 5px;
+  margin: 0;
+}
+
+.header h1 {
+  color: white;
+}
+
+.main nav details {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+}
+
+.navLinks {
+  --auto-link-grid-min-size: 10rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-link-grid-min-size), 1fr)
+  );
+  width: calc(100vw - 30px);
+  row-gap: 5px;
+  text-align: center;
+}
+
+.navLinks a {
+  border: 1px solid black;
+  margin: 3px;
+  display: block;
+  height: 100%;
 }
 
 .main {
   min-height: calc(100vh - 100px);
-  padding: 10px;
 }
 
 .footer {
-  height: 100%;
+  display: grid;
+  --auto-footer-grid-min-size: 20rem;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-footer-grid-min-size), 1fr)
+  );
+  align-items: center;
   text-align: center;
+  height: 100%;
+  width: 100vw - 20px;
 }

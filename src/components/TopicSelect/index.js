@@ -24,7 +24,9 @@ const TopicSelect = ({ topic, setTopic, setIsLoading, setError }) => {
     <select value={topic} onChange={(ev) => setTopic(ev.target.value)}>
       <option value="">Select a topic...</option>
       {topics.map(({ slug }) => (
-        <option value={slug}>{slug}</option>
+        <option key={slug} value={slug}>
+          {slug}
+        </option>
       ))}
     </select>
   );
