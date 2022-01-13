@@ -6,20 +6,21 @@ import Loading from "../Loading";
 import ArticleCard from "../ArticleCard";
 import CommentList from "../CommentList";
 
-const Article = ({ setIsLoading }) => {
+const Article = ({ setIsLoading, setError }) => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
 
   useEffect(() => {
+    setError(null);
     getArticle(article_id)
       .then((newArticle) => {
         setArticle(newArticle);
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       })
       .finally(() => setIsLoading(false));
-  }, [article_id, setArticle, setIsLoading]);
+  }, [article_id, setArticle, setIsLoading, setError]);
 
   return (
     <ArticleCard article={article}>
@@ -28,4 +29,4 @@ const Article = ({ setIsLoading }) => {
   );
 };
 
-export default Loading(Article, "Loading article...");
+export default Loading(Article, "Loading article...", true);

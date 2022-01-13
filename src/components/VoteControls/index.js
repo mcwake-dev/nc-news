@@ -5,7 +5,7 @@ import { setVotes as setArticleVotes } from "../../api/articles";
 import Loading from "../Loading";
 import styles from "./VoteControls.module.css";
 
-const VoteControls = ({ item_id, votes, voteType, setIsLoading }) => {
+const VoteControls = ({ item_id, votes, voteType, setIsLoading, setError }) => {
   const [currentVotes, setCurrentVotes] = useState(0);
 
   const updateVotes = (vote) => {
@@ -24,9 +24,10 @@ const VoteControls = ({ item_id, votes, voteType, setIsLoading }) => {
 
     setCurrentVotes((current) => current + vote);
     setIsLoading(true);
+    setError(null);
     voteApi(item_id, vote)
       .catch((err) => {
-        console.log(err);
+        setError(err);
         setCurrentVotes((current) => current - vote);
       })
       .finally(() => {
@@ -36,7 +37,6 @@ const VoteControls = ({ item_id, votes, voteType, setIsLoading }) => {
 
   useEffect(() => {
     setCurrentVotes(() => votes);
-    setIsLoading(false);
   }, [votes, setIsLoading]);
 
   return (
@@ -48,4 +48,4 @@ const VoteControls = ({ item_id, votes, voteType, setIsLoading }) => {
   );
 };
 
-export default Loading(VoteControls, "Updating votes...");
+export default Loading(VoteControls, "Updating votes...", false);

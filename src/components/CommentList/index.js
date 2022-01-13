@@ -6,22 +6,24 @@ import styles from "./CommentList.module.css";
 import Loading from "../Loading";
 import CommentForm from "../CommentForm";
 
-const CommentList = ({ article_id, setIsLoading }) => {
+const CommentList = ({ article_id, setIsLoading, setError }) => {
   const [comments, setComments] = useState([]);
   const DUMMY_USERNAME = "happyamy2016";
 
   useEffect(() => {
+    setError(null);
     getArticleComments(article_id)
       .then((newComments) => {
         setComments(newComments);
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [setComments, article_id, setIsLoading]);
+  }, [setComments, article_id, setIsLoading, setError]);
+
   return (
     <>
       <section className={styles.commentForm}>
@@ -46,4 +48,4 @@ const CommentList = ({ article_id, setIsLoading }) => {
   );
 };
 
-export default Loading(CommentList, "Loading comments...");
+export default Loading(CommentList, "Loading comments...", true);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./NewArticle.module.css";
@@ -8,16 +8,12 @@ import ArticleCard from "../ArticleCard";
 import { DUMMY_USERNAME as username } from "../../api/constants";
 import { postArticle } from "../../api/articles";
 
-const NewArticle = ({ setIsLoading }) => {
+const NewArticle = ({ setIsLoading, setError }) => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [topic, setTopic] = useState("");
-
-  useEffect(() => {
-    setIsLoading(false);
-  });
 
   const article = {
     author: username,
@@ -32,12 +28,13 @@ const NewArticle = ({ setIsLoading }) => {
   const postThisArticle = () => {
     if (title && body && topic) {
       setIsLoading(true);
+      setError(null);
       postArticle(username, title, body, topic)
         .then((article) => {
           navigate(`/articles/${article.article_id}`);
         })
         .catch((err) => {
-          console.log(err);
+          setError(err);
         })
         .finally(() => {
           setIsLoading(false);
@@ -78,4 +75,4 @@ const NewArticle = ({ setIsLoading }) => {
   );
 };
 
-export default Loading(NewArticle, "Posting Article...");
+export default Loading(NewArticle, "Posting Article...", false);

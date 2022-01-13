@@ -3,16 +3,17 @@ import { getTopics } from "../../api/topics";
 
 import Loading from "../Loading";
 
-const TopicSelect = ({ topic, setTopic, setIsLoading }) => {
+const TopicSelect = ({ topic, setTopic, setIsLoading, setError }) => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
+    setError(null);
     getTopics()
       .then((newTopics) => {
         setTopics(newTopics);
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -29,4 +30,4 @@ const TopicSelect = ({ topic, setTopic, setIsLoading }) => {
   );
 };
 
-export default Loading(TopicSelect, "Loading Topics...");
+export default Loading(TopicSelect, "Loading Topics...", true);

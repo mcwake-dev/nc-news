@@ -7,22 +7,23 @@ import Loading from "../Loading";
 import SortAndFilterLink from "../SortAndFilterLink";
 import styles from "./ArticleControls.module.css";
 
-const ArticleControls = ({ setIsLoading }) => {
+const ArticleControls = ({ setIsLoading, setError }) => {
   const { topic, sort, order } = useParams();
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
+    setError(null);
     getTopics()
       .then((newTopics) => {
         setTopics(newTopics);
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [setTopics, setIsLoading]);
+  }, [setTopics, setIsLoading, setError]);
 
   return (
     <details>

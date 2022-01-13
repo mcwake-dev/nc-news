@@ -1,9 +1,10 @@
 import styles from "./Loading.module.css";
 import { useState } from "react";
 
-const Loading = (WrappedComponent, loadingMessage) => {
+const Loading = (WrappedComponent, loadingMessage, startLoading) => {
   function HOC(props) {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(startLoading);
+    const [error, setError] = useState("");
 
     return (
       <>
@@ -14,7 +15,14 @@ const Loading = (WrappedComponent, loadingMessage) => {
           </div>
         </div>
         <div className={isLoading ? styles.invisible : styles.visible}>
-          <WrappedComponent {...props} setIsLoading={setIsLoading} />
+          <div className={styles.errorDisplay}>
+            {error ? error.message : ""}
+          </div>
+          <WrappedComponent
+            {...props}
+            setIsLoading={setIsLoading}
+            setError={setError}
+          />
         </div>
       </>
     );

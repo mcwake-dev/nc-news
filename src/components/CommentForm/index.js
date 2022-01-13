@@ -6,19 +6,20 @@ import { postComment } from "../../api/articles";
 import { useEffect } from "react/cjs/react.development";
 import { DUMMY_USERNAME as username } from "../../api/constants";
 
-const CommentForm = ({ article_id, setIsLoading, setComments }) => {
+const CommentForm = ({ article_id, setIsLoading, setError, setComments }) => {
   const [body, setBody] = useState("");
 
   const validateAndPostComment = () => {
     if (body.length > 0) {
       setIsLoading(true);
+      setError(null);
       postComment(article_id, username, body)
         .then((comment) => {
           setComments((current) => [comment, ...current]);
           setBody("");
         })
         .catch((err) => {
-          console.log(err);
+          setError(err);
         })
         .finally(() => {
           setIsLoading(false);

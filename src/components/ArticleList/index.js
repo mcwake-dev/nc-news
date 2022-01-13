@@ -7,22 +7,23 @@ import ArticleControls from "../ArticleControls";
 import { getArticles } from "../../api/articles";
 import styles from "./ArticleList.module.css";
 
-const ArticleList = ({ setIsLoading }) => {
+const ArticleList = ({ setIsLoading, setError }) => {
   const { topic, sort, order } = useParams();
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
+    setError(null);
     getArticles(topic, sort, order)
       .then((newArticles) => {
         setArticles(newArticles);
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [order, setIsLoading, sort, topic]);
+  }, [order, setIsLoading, setError, sort, topic]);
 
   return (
     <>

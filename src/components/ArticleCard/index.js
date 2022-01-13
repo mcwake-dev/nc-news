@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -23,25 +22,23 @@ const ArticleCard = ({
   },
   children,
   setIsLoading,
+  setError,
 }) => {
   const navigate = useNavigate();
   const deleteThisArticle = () => {
     setIsLoading(true);
+    setError(null);
     deleteArticle(article_id)
       .then((status) => {
         navigate("/");
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
-
-  useEffect(() => {
-    setIsLoading(false);
-  });
 
   return (
     <div className={styles.articleContainer}>
@@ -86,4 +83,4 @@ const ArticleCard = ({
   );
 };
 
-export default Loading(ArticleCard, "Deleting Article...");
+export default Loading(ArticleCard, "Deleting Article...", false);
