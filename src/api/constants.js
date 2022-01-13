@@ -1,5 +1,5 @@
-//export const API = "https://mcw-nc-news.herokuapp.com/api";
-export const API = "http://localhost:9090/api";
+export const API = "https://mcw-nc-news.herokuapp.com/api";
+//export const API = "http://localhost:9090/api";
 export const VALID_SORTS = [
   { title: "Title", param: "title" },
   { title: "Topic", param: "topic" },
