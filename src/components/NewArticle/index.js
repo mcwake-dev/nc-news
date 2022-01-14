@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./NewArticle.module.css";
-import Loading from "../Loading";
+import Loading, { LOADED, LOADING } from "../Loading";
+import Authenticated, { AUTHENTICATED_ONLY } from "../Authenticated";
 import TopicSelect from "../TopicSelect";
 import ArticleCard from "../ArticleCard";
-import { DUMMY_USERNAME as username } from "../../api/constants";
 import { postArticle } from "../../api/articles";
 
-const NewArticle = ({ setIsLoading, setError }) => {
+const NewArticle = ({ setIsLoading, setError, user: { username } }) => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -27,7 +27,7 @@ const NewArticle = ({ setIsLoading, setError }) => {
 
   const postThisArticle = () => {
     if (title && body && topic) {
-      setIsLoading(true);
+      setIsLoading(LOADING);
       setError(null);
       postArticle(username, title, body, topic)
         .then((article) => {
@@ -37,7 +37,7 @@ const NewArticle = ({ setIsLoading, setError }) => {
           setError(err);
         })
         .finally(() => {
-          setIsLoading(false);
+          setIsLoading(LOADED);
         });
     }
   };
@@ -75,4 +75,7 @@ const NewArticle = ({ setIsLoading, setError }) => {
   );
 };
 
-export default Loading(NewArticle, "Posting Article...", false);
+export default Authenticated(
+  Loading(NewArticle, "Posting Article...", LOADED),
+  AUTHENTICATED_ONLY
+);

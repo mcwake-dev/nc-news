@@ -1,32 +1,11 @@
 import styles from "./CommentCard.module.css";
 import VoteControls from "../VoteControls";
-import Loading from "../Loading";
-import { deleteComment } from "../../api/comments";
-import { DUMMY_USERNAME as username } from "../../api/constants";
+import DeleteComment from "../DeleteComment";
 
 const CommentCard = ({
   comment: { author, body, comment_id, created_at, votes },
   setComments,
-  setIsLoading,
-  setError,
 }) => {
-  const deleteMyComment = () => {
-    setError(null);
-    setIsLoading(true);
-    deleteComment(comment_id)
-      .then((status) => {
-        setComments((current) =>
-          current.filter((comment) => comment.comment_id !== comment_id)
-        );
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   return (
     <article className={styles.commentCard}>
       <hr />
@@ -42,16 +21,10 @@ const CommentCard = ({
       <hr />
       <main>{body}</main>
       <footer>
-        {author === username ? (
-          <button onClick={(ev) => deleteMyComment()}>
-            Delete This Comment
-          </button>
-        ) : (
-          ""
-        )}
+        <DeleteComment comment_id={comment_id} setComments={setComments} />
       </footer>
     </article>
   );
 };
 
-export default Loading(CommentCard, "Deleting comment...", false);
+export default CommentCard;

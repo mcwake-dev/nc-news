@@ -1,6 +1,9 @@
 import styles from "./Loading.module.css";
 import { useState } from "react";
 
+export const LOADING = true;
+export const LOADED = false;
+
 const Loading = (WrappedComponent, loadingMessage, startLoading) => {
   function LoadingHOC(props) {
     const [isLoading, setIsLoading] = useState(startLoading);

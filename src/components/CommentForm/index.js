@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 
-import Loading from "../Loading";
+import Loading, { LOADED, LOADING } from "../Loading";
+import Authenticated, { AUTHENTICATED_ONLY } from "../Authenticated";
 import styles from "./CommentForm.module.css";
 import { postComment } from "../../api/articles";
-import { DUMMY_USERNAME as username } from "../../api/constants";
 
-const CommentForm = ({ article_id, setIsLoading, setError, setComments }) => {
+const CommentForm = ({
+  article_id,
+  setIsLoading,
+  setError,
+  setComments,
+  user: { username },
+}) => {
   const [body, setBody] = useState("");
 
   const validateAndPostComment = () => {
     if (body.length > 0) {
-      setIsLoading(true);
+      setIsLoading(LOADING);
       setError(null);
       postComment(article_id, username, body)
         .then((comment) => {
@@ -21,7 +27,7 @@ const CommentForm = ({ article_id, setIsLoading, setError, setComments }) => {
           setError(err);
         })
         .finally(() => {
-          setIsLoading(false);
+          setIsLoading(LOADED);
         });
     } else {
       throw new Error("You must enter a comment");
@@ -54,4 +60,7 @@ const CommentForm = ({ article_id, setIsLoading, setError, setComments }) => {
   );
 };
 
-export default Loading(CommentForm, "Posting comment...");
+export default Authenticated(
+  Loading(CommentForm, "Posting comment...", LOADED),
+  AUTHENTICATED_ONLY
+);

@@ -1,13 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { deleteArticle } from "../../api/articles";
 import TopicBanner from "../TopicBanner";
 import VoteControls from "../VoteControls";
-import Loading from "../Loading";
+import DeleteArticle from "../DeleteArticle";
 import styles from "./ArticleCard.module.css";
-import { DUMMY_USERNAME as username } from "../../api/constants";
 
 const ArticleCard = ({
   article: {
@@ -21,25 +18,7 @@ const ArticleCard = ({
     body,
   },
   children,
-  setIsLoading,
-  setError,
 }) => {
-  const navigate = useNavigate();
-  const deleteThisArticle = () => {
-    setIsLoading(true);
-    setError(null);
-    deleteArticle(article_id)
-      .then((status) => {
-        navigate("/");
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   return (
     <div className={styles.articleContainer}>
       <article className={styles.articleCard}>
@@ -69,13 +48,7 @@ const ArticleCard = ({
         </header>
         <main className={styles.articleBody}>
           <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
-          {author === username ? (
-            <button onClick={(ev) => deleteThisArticle()}>
-              Delete Article
-            </button>
-          ) : (
-            ""
-          )}
+          <DeleteArticle article_id={article_id} />
           <aside>{children}</aside>
         </main>
       </article>
@@ -83,4 +56,4 @@ const ArticleCard = ({
   );
 };
 
-export default Loading(ArticleCard, "Deleting Article...", false);
+export default ArticleCard;

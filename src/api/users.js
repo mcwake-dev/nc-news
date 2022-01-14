@@ -7,3 +7,10 @@ export const getUsers = async () => {
 
   return response.data.users;
 };
+
+export const getUser = async (username) => {
+  const url = new URL(`${API}/users/${username}`);
+  const response = await axios.get(url);
+
+  return response.data.user;
+};

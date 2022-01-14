@@ -1,5 +1,5 @@
-export const API = "https://mcw-nc-news.herokuapp.com/api";
-//export const API = "http://localhost:9090/api";
+export const API = process.env.REACT_APP_BACKEND_URL;
+
 export const VALID_SORTS = [
   { title: "Title", param: "title" },
   { title: "Topic", param: "topic" },
@@ -12,4 +12,3 @@ export const VALID_ORDERS = [
   { title: "Descending", param: "desc" },
   { title: "Ascending", param: "asc" },
 ];
-export const DUMMY_USERNAME = "happyamy2016";
