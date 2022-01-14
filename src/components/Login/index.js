@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { getUser } from "../../api/users";
+import { useNavigate } from "react-router-dom";
 
+import { getUser } from "../../api/users";
 import Authenticated, { UNAUTHENTICATED_ONLY } from "../Authenticated";
 import Loading, { LOADING, LOADED } from "../Loading";
 import styles from "./Login.module.css";
@@ -8,6 +9,7 @@ import styles from "./Login.module.css";
 const Login = ({ setIsLoading, setError, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const logMeIn = () => {
     setError(null);
@@ -15,6 +17,7 @@ const Login = ({ setIsLoading, setError, setUser }) => {
     getUser(username)
       .then((user) => {
         setUser(user);
+        navigate("/");
       })
       .catch((err) => {
         setError(err);

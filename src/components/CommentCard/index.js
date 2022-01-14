@@ -1,3 +1,5 @@
+import * as dayjs from "dayjs";
+
 import styles from "./CommentCard.module.css";
 import VoteControls from "../VoteControls";
 import DeleteComment from "../DeleteComment";
@@ -10,18 +12,22 @@ const CommentCard = ({
     <article className={styles.commentCard}>
       <hr />
       <header className={styles.commentCardHeader}>
-        <VoteControls item_id={comment_id} votes={votes} voteType={"comment"} />
         <div>
-          <b>{author}</b> said:
+          <p>{dayjs(created_at).format("ddd D MMM YYYY HH:mm")}</p>
+          <p>
+            <b>{author}</b> said:
+          </p>
         </div>
-        <div className={styles.commentDate}>
-          {new Date(created_at).toLocaleString()}
-        </div>
+        <VoteControls item_id={comment_id} votes={votes} voteType={"comment"} />
       </header>
       <hr />
       <main>{body}</main>
       <footer>
-        <DeleteComment comment_id={comment_id} setComments={setComments} />
+        <DeleteComment
+          comment_id={comment_id}
+          author={author}
+          setComments={setComments}
+        />
       </footer>
     </article>
   );

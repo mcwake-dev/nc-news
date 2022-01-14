@@ -8,7 +8,7 @@ const DeleteComment = ({
   setComments,
   comment_id,
   author,
-  username,
+  user: { username },
 }) => {
   const deleteMyComment = () => {
     setError(null);
@@ -27,9 +27,11 @@ const DeleteComment = ({
       });
   };
 
+  console.log(author, username, author === username);
+
   if (author === username) {
     return (
-      <button onClick={(ev) => deleteMyComment()}>Delete This Comment</button>
+      <button onClick={(ev) => deleteMyComment()}>Delete My Comment</button>
     );
   } else {
     return <></>;

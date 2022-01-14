@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
+import * as dayjs from "dayjs";
 import TopicBanner from "../TopicBanner";
 import VoteControls from "../VoteControls";
 import DeleteArticle from "../DeleteArticle";
@@ -20,39 +20,46 @@ const ArticleCard = ({
   children,
 }) => {
   return (
-    <div className={styles.articleContainer}>
-      <article className={styles.articleCard}>
-        <header>
-          <TopicBanner title={topic} />
-          <hr />
-          <div className={styles.articleData}>
-            <div className={styles.date}>
-              {new Date(created_at).toLocaleString()}
-            </div>
-            <div className={styles.votes}>
-              {body ? (
-                <VoteControls
-                  voteType={"article"}
-                  item_id={article_id}
-                  votes={votes}
-                />
-              ) : (
-                `${votes} Votes`
-              )}
-            </div>
-            <div className={styles.comments}>{comment_count} Comments</div>
+    <article className={styles.articleCard}>
+      <header>
+        <TopicBanner title={topic} />
+        <hr />
+        <div className={styles.articleData}>
+          <div className={styles.date}>
+            {`${dayjs(created_at).format("ddd D MMM YYYY HH:mm")}`}
           </div>
-          <hr />
-          <div className={styles.articleTitle}>{title}</div>
-          <div className={styles.articleAuthor}>- By {author} -</div>
-        </header>
-        <main className={styles.articleBody}>
-          <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
-          <DeleteArticle article_id={article_id} />
-          <aside>{children}</aside>
-        </main>
-      </article>
-    </div>
+          <div className={styles.feedback}>
+            {body ? (
+              <VoteControls
+                voteType={"article"}
+                item_id={article_id}
+                votes={votes}
+              />
+            ) : (
+              <>
+                <p>{votes} votes</p>
+                <p>{comment_count} comments</p>
+              </>
+            )}
+          </div>
+        </div>
+        <hr />
+        <div className={styles.articleTitle}>{title}</div>
+        <div className={styles.articleAuthor}>- By {author} -</div>
+      </header>
+      <main className={styles.articleBody}>
+        <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
+        <DeleteArticle article_id={article_id} author={author} />
+      </main>
+      {body ? (
+        <details>
+          <summary>View {comment_count} Comments</summary>
+          {children}
+        </details>
+      ) : (
+        <></>
+      )}
+    </article>
   );
 };
 

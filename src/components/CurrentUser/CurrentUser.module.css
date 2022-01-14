@@ -1,0 +1,24 @@
+.currentUser {
+  display: grid;
+  grid-template-areas:
+    "avatar username"
+    "avatar name";
+  align-items: center;
+}
+
+.avatar {
+  grid-area: avatar;
+}
+
+.username {
+  grid-area: username;
+}
+
+.name {
+  grid-area: name;
+}
+
+.avatar img {
+  height: auto;
+  width: 60px;
+}

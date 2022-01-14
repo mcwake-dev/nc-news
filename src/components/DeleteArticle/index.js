@@ -29,7 +29,7 @@ const DeleteArticle = ({
 
   if (author === username) {
     return (
-      <button onClick={(ev) => deleteThisArticle()}>Delete Article</button>
+      <button onClick={(ev) => deleteThisArticle()}>Delete My Article</button>
     );
   } else {
     return "";

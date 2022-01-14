@@ -4,6 +4,7 @@ import { setVotes as setCommentVotes } from "../../api/comments";
 import { setVotes as setArticleVotes } from "../../api/articles";
 import Loading from "../Loading";
 import styles from "./VoteControls.module.css";
+import Authenticated, { AUTHENTICATED_ONLY } from "../Authenticated";
 
 const VoteControls = ({ item_id, votes, voteType, setIsLoading, setError }) => {
   const [currentVotes, setCurrentVotes] = useState(0);
@@ -48,4 +49,7 @@ const VoteControls = ({ item_id, votes, voteType, setIsLoading, setError }) => {
   );
 };
 
-export default Loading(VoteControls, "Updating votes...", false);
+export default Authenticated(
+  Loading(VoteControls, "Updating votes...", false),
+  AUTHENTICATED_ONLY
+);

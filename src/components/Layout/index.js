@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import PrivilegedLink from "../PrivilegedLink";
+import CurrentUser from "../CurrentUser";
 import UnprivilegedLink from "../UnprivilegedLink";
 
 import styles from "./Layout.module.css";
@@ -7,20 +7,21 @@ import styles from "./Layout.module.css";
 const Layout = () => {
   return (
     <div className={styles.app}>
-      <div className={styles.header}>
-        <Link to="/">
-          <h1>📰 NC News</h1>
-        </Link>
+      <header>
+        <div className={styles.appName}>
+          <Link className={styles.appName} to="/">
+            📰 NC News
+          </Link>
+        </div>
         <div className={styles.navLinks}>
           <Link to="/author/all/topic/all/sort-by/created_at/order/desc">
-            Home
+            Articles
           </Link>
           <Link to="/users">Users</Link>
-          <PrivilegedLink title={"Post Article"} url={"/articles/new"} />
-          <PrivilegedLink title={"Log Out"} url={"/users/logout"} />
           <UnprivilegedLink title={"Log In"} url={"/users/login"} />
         </div>
-      </div>
+        <CurrentUser className={styles.currentUser} />
+      </header>
       <div className={styles.main}>
         <Outlet />
       </div>

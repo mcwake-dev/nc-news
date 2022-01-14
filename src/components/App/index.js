@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
-import "./App.module.css";
 import Layout from "../Layout";
 import ArticleList from "../ArticleList";
 import Article from "../Article";

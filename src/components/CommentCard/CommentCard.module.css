@@ -4,12 +4,9 @@
 
 .commentCardHeader {
   display: grid;
-  grid-template-columns: 125px 1fr 1fr;
+  grid-template-columns: 1fr 125px;
   align-items: center;
-}
-
-.commentDate {
-  text-align: right;
+  text-align: center;
 }
 
 .commentCard footer {
