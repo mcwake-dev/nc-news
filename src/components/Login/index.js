@@ -28,22 +28,27 @@ const Login = ({ setIsLoading, setError, setUser }) => {
   };
 
   return (
-    <div className={styles.login}>
-      <label htmlFor="username">Username: </label>
-      <input
-        type="text"
-        id="username"
-        value={username}
-        onChange={(ev) => setUsername(ev.target.value)}
-      />
-      <label htmlFor="password">Password: </label>
-      <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={(ev) => setPassword(ev.target.value)}
-      />
-      <button onClick={(ev) => logMeIn()}>Log In</button>
+    <div className={styles.loginContainer}>
+      <h2>Log In</h2>
+      <div className={styles.loginForm}>
+        <label htmlFor="username">Username: </label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(ev) => setUsername(ev.target.value)}
+        />
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(ev) => setPassword(ev.target.value)}
+        />
+        <button className="link primary" onClick={(ev) => logMeIn()}>
+          Log In
+        </button>
+      </div>
     </div>
   );
 };

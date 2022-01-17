@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { setVotes as setCommentVotes } from "../../api/comments";
 import { setVotes as setArticleVotes } from "../../api/articles";
 import Loading from "../Loading";
-import styles from "./VoteControls.module.css";
 import Authenticated, { AUTHENTICATED_ONLY } from "../Authenticated";
+import styles from "./VoteControls.module.css";
 
 const VoteControls = ({ item_id, votes, voteType, setIsLoading, setError }) => {
   const [currentVotes, setCurrentVotes] = useState(0);

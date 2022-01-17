@@ -5,8 +5,8 @@ import { getTopics } from "../../api/topics";
 import { VALID_ORDERS, VALID_SORTS } from "../../api/constants";
 import Loading from "../Loading";
 import SortAndFilterLink from "../SortAndFilterLink";
-import styles from "./ArticleControls.module.css";
 import { getUsers } from "../../api/users";
+import styles from "./ArticleControls.module.css";
 
 const ArticleControls = ({ setIsLoading, setError }) => {
   const { author, topic, sort, order } = useParams();
@@ -42,12 +42,12 @@ const ArticleControls = ({ setIsLoading, setError }) => {
   }, [setAuthors, setIsLoading, setError]);
 
   return (
-    <details className={styles.articleControlsContainer}>
+    <details>
       <summary>Sort &amp; Filter</summary>
-      <div className={styles.articleControls}>
-        <div className={styles.filterContainer}>
+      <div>
+        <div>
           <h4>Filter by author: </h4>
-          <div className={styles.filters}>
+          <div>
             <SortAndFilterLink
               key={"all"}
               isCurrent={author === "all"}
@@ -66,9 +66,9 @@ const ArticleControls = ({ setIsLoading, setError }) => {
             ))}
           </div>
         </div>
-        <div className={styles.filterContainer}>
+        <div>
           <h4>Filter by topic: </h4>
-          <div className={styles.filters}>
+          <div>
             <SortAndFilterLink
               key={"all"}
               isCurrent={topic === "all"}
@@ -88,9 +88,9 @@ const ArticleControls = ({ setIsLoading, setError }) => {
             ))}
           </div>
         </div>
-        <div className={styles.filterContainer}>
+        <div>
           <h4>Sort by: </h4>
-          <div className={styles.filters}>
+          <div>
             {VALID_SORTS.map((sortOption) => (
               <SortAndFilterLink
                 key={sortOption.param}
@@ -102,9 +102,9 @@ const ArticleControls = ({ setIsLoading, setError }) => {
             ))}
           </div>
         </div>
-        <div className={styles.filterContainer}>
+        <div>
           <h4>Order by: </h4>
-          <div className={styles.filters}>
+          <div>
             {VALID_ORDERS.map((orderOption) => (
               <SortAndFilterLink
                 key={orderOption.param}

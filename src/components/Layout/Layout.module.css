@@ -1,34 +1,79 @@
-.app {
-  display: grid;
-  grid-template-rows: 60px 1fr 60px;
+:root {
+  --main-radius: 5px;
+  --main-padding: 5px;
+  --background-color: #e33a11;
 }
 
-.app header .appName {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: red;
+.layoutContainer {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 0.2fr 1.5fr 0.8fr;
+  grid-template-areas:
+    "nav     nav    nav    nav"
+    "sidebar main   main   main"
+    "sidebar footer footer footer";
+}
+
+a {
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+a:hover {
+  border-bottom: 1px solid white;
+}
+
+nav {
+  grid-area: nav;
+  background-color: var(--background-color);
+  padding: 10px;
+}
+
+nav a,
+footer a {
   color: white;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 5px;
 }
 
-.app header .navLinks {
+nav a:nth-of-type(1) {
+  float: left;
+}
+
+nav a:nth-child(n + 2) {
+  float: right;
+}
+
+main {
+  grid-area: main;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+footer {
+  grid-area: footer;
+  color: white;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+  background-color: black;
   display: grid;
-  --auto-grid-min-size: 7rem;
-  align-items: center;
-  justify-items: space-around;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(var(--auto-grid-min-size), 1fr)
-  );
-  padding: 5px;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  margin-top: 5px;
+  justify-content: center;
 }
 
-.navLinks a {
-  text-align: center;
+.sidebar {
+  grid-area: sidebar;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+
+@media only screen and (max-width: 550px) {
+  .layoutContainer {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 0.4fr 2.2fr 1fr;
+    grid-template-areas:
+      "nav"
+      "main"
+      "sidebar"
+      "footer";
+  }
 }

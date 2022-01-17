@@ -1,5 +1,4 @@
 import TopicBanner from "../TopicBanner";
-import styles from "./UserCard.module.css";
 
 const UserCard = ({
   user: {
@@ -13,31 +12,27 @@ const UserCard = ({
   },
 }) => {
   return (
-    <div className={styles.userCard}>
-      <div className={styles.avatar}>
+    <div>
+      <div>
         <img src={avatar_url} alt={`${username}'s avatar`} />
       </div>
-      <div className={styles.username}>
+      <div>
         <TopicBanner title={username} />
       </div>
 
-      <div className={styles.userData}>
-        <div className={styles.name}>
+      <div>
+        <div>
           <h1>{name}</h1>
         </div>
-        <div className={styles.articles}>
+        <div>
           <h2>Articles</h2>
-          <div className={styles.articleCount}>{articlecount} Articles</div>
-          <div className={styles.articleVotes}>
-            Received {articlevotes} Votes
-          </div>
+          <div>{articlecount} Articles</div>
+          <div>Received {articlevotes} Votes</div>
         </div>
-        <div className={styles.comments}>
+        <div>
           <h2>Comments</h2>
-          <div className={styles.commentCount}>{commentcount} Comments</div>
-          <div className={styles.commentVotes}>
-            Received {commentvotes} Votes
-          </div>
+          <div>{commentcount} Comments</div>
+          <div>Received {commentvotes} Votes</div>
         </div>
       </div>
     </div>

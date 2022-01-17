@@ -1,6 +1,6 @@
-import styles from "./Loading.module.css";
 import { useState } from "react";
 
+import styles from "./Loading.module.css";
 export const LOADING = true;
 export const LOADED = false;
 

@@ -1,26 +1,6 @@
-.commentCard {
-  margin-bottom: 20px;
-}
-
-.commentCardHeader {
+.comment header {
   display: grid;
-  grid-template-columns: 1fr 125px;
-  align-items: center;
-  text-align: center;
-}
-
-.commentCard footer {
-  display: grid;
-  margin-top: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
-}
-
-.commentCard footer button {
-  padding: 5px;
-  border-radius: 5px;
-  border: 2px solid white;
-  background-color: #793430;
-  color: white;
-  font-weight: bold;
 }

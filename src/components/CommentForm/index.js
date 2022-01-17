@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import Loading, { LOADED, LOADING } from "../Loading";
 import Authenticated, { AUTHENTICATED_ONLY } from "../Authenticated";
-import styles from "./CommentForm.module.css";
 import { postComment } from "../../api/articles";
 
 const CommentForm = ({
@@ -39,7 +38,7 @@ const CommentForm = ({
   });
 
   return (
-    <details className={styles.commentForm}>
+    <details>
       <summary>New Comment</summary>
       <p>
         Posting as: <strong>{username}</strong>
@@ -47,7 +46,7 @@ const CommentForm = ({
       <p>
         Characters left: <strong>{1000 - body.length}</strong>
       </p>
-      <div className={styles.textareaContainer}>
+      <div>
         <textarea
           value={body}
           onChange={(ev) => setBody(ev.target.value)}

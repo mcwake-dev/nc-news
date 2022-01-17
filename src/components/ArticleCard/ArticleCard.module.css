@@ -1,36 +1,22 @@
-.articleCard {
-  -webkit-box-shadow: inset 0px -16px 15px 5px #000000;
-  box-shadow: inset 0px -16px 15px -15px #000000;
-  background-color: #f3dfc1;
+article {
+  color: black;
   padding: 10px;
-  max-width: calc(100vw - 25px);
-  margin: 15px;
+  margin: 10px;
 }
 
-.articleData {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
-  grid-template-columns: 1fr 1fr;
+article header {
+  color: white;
+  background-color: var(--background-color);
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
-.articleCard hr:first-of-type {
-  margin-top: 5px;
+.topic {
+  text-transform: capitalize;
 }
 
-.articleTitle {
-  padding-top: 10px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.articleAuthor {
-  text-align: center;
-}
-
-.articleBody p {
+.author {
+  background-color: black;
+  color: white;
   padding: 10px;
 }

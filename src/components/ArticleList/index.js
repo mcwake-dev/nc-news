@@ -5,7 +5,6 @@ import Loading from "../Loading";
 import ArticleCard from "../ArticleCard";
 import ArticleControls from "../ArticleControls";
 import { getArticles } from "../../api/articles";
-import styles from "./ArticleList.module.css";
 
 const ArticleList = ({ setIsLoading, setError }) => {
   const { author, topic, sort, order } = useParams();
@@ -28,7 +27,7 @@ const ArticleList = ({ setIsLoading, setError }) => {
   return (
     <>
       <ArticleControls />
-      <div className={styles.articleList}>
+      <div>
         {articles.map((article) => (
           <Link key={article.article_id} to={`/articles/${article.article_id}`}>
             <ArticleCard article={article} />

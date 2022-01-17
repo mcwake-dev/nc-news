@@ -7,6 +7,7 @@ import Article from "../Article";
 import NewArticle from "../NewArticle";
 import UserList from "../UserList";
 import NotFound from "../NotFound";
+import Home from "../Home";
 import Login from "../Login";
 import Logout from "../Logout";
 import { UserContext } from "../../contexts/User";
@@ -18,7 +19,7 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="" element={<ArticleList />} />
+          <Route path="" element={<Home />} />
           <Route
             path="author/:author/topic/:topic/sort-by/:sort/order/:order"
             element={<ArticleList />}

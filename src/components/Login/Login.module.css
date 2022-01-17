@@ -1,0 +1,37 @@
+.loginContainer {
+  padding: 10px;
+  margin: 10px;
+  background: #eee;
+}
+
+.loginForm {
+  display: grid;
+  grid-template-columns: [labels] auto [controls] 1fr;
+  grid-auto-flow: row;
+  grid-gap: 0.8em;
+  padding: 0.2em;
+  align-items: center;
+  max-width: 100vw;
+}
+
+.loginForm > label {
+  grid-column: labels;
+  grid-row: auto;
+}
+
+.loginForm > input {
+  grid-column: controls;
+  grid-row: auto;
+  border: none;
+  padding: 1em;
+}
+
+.loginForm > button {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding: 1em;
+  border: none;
+  background-color: #e33a11;
+  color: white;
+  font-weight: bold;
+}

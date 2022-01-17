@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import styles from "./NewArticle.module.css";
 import Loading, { LOADED, LOADING } from "../Loading";
 import Authenticated, { AUTHENTICATED_ONLY } from "../Authenticated";
 import TopicSelect from "../TopicSelect";
@@ -43,8 +42,8 @@ const NewArticle = ({ setIsLoading, setError, user: { username } }) => {
   };
 
   return (
-    <section className={styles.newArticle}>
-      <div className={styles.newArticleForm}>
+    <section>
+      <div>
         <label htmlFor="topic">Topic</label>
         <TopicSelect topic={topic} setTopic={setTopic} />
         <label htmlFor="title">Title</label>
@@ -68,7 +67,7 @@ const NewArticle = ({ setIsLoading, setError, user: { username } }) => {
         />
         <button onClick={(ev) => postThisArticle()}>Post Article</button>
       </div>
-      <div className={styles.newArticlePreview}>
+      <div>
         <ArticleCard article={article} />
       </div>
     </section>
