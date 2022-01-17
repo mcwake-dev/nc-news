@@ -11,7 +11,6 @@ const UserList = ({ setIsLoading, setError }) => {
     setError(null);
     getUsers()
       .then((newUsers) => {
-        console.log(newUsers);
         setUsers(newUsers);
       })
       .catch((err) => {
