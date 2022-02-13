@@ -8,19 +8,21 @@ const Loading = (WrappedComponent, loadingMessage, startLoading) => {
     const [isLoading, setIsLoading] = useState(startLoading);
     const [error, setError] = useState("");
 
-    if (isLoading) {
-      return <div>Loading...</div>;
-    } else if (error) {
-      return <div>Error</div>;
-    } else {
-      return (
+    return (
+      <>
+        <div className={isLoading ? "notification is-info" : "is-invisible"}>
+          {loadingMessage}...
+        </div>
+        <div className={error ? "notification is-error" : "is-invisible"}>
+          {error}
+        </div>
         <WrappedComponent
           {...props}
           setIsLoading={setIsLoading}
           setError={setError}
         />
-      );
-    }
+      </>
+    );
   }
 
   return LoadingHOC;

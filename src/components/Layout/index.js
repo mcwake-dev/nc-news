@@ -1,20 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { mostRecentComments } from "../../api/comments";
+
+import RecentComments from "../RecentComments";
+import HighestVotedComments from "../HighestVotedComments";
 
 const Layout = () => {
   const [menuActive, setMenuActive] = useState(false);
-  const [recentComments, setRecentComments] = useState([]);
-
-  useEffect(() => {
-    mostRecentComments()
-      .then((comments) => {
-        setRecentComments(comments);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
 
   return (
     <>
@@ -72,32 +63,8 @@ const Layout = () => {
             <Outlet />
           </div>
           <div className="column is-one-fifth">
-            <div>Latest Article</div>
-            <section>
-              <h2 class="subtitle">Latest Comments</h2>
-              {recentComments.map(
-                ({
-                  comment_id,
-                  body,
-                  votes,
-                  author,
-                  article_id,
-                  created_at,
-                  title,
-                }) => (
-                  <article className={"mb-4"}>
-                    <Link to={`/articles/${article_id}`}>{title}</Link>
-                    <br />
-                    <b>{author}</b> commented: <br />
-                    {body.substring(0, 30)}...
-                  </article>
-                )
-              )}
-              <hr />
-            </section>
-
-            <div>Top Voted Article</div>
-            <div>Top Voted Comment</div>
+            <RecentComments />
+            <HighestVotedComments />
           </div>
         </section>
       </main>

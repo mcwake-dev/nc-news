@@ -33,3 +33,14 @@ export const mostRecentComments = async () => {
 
   return response.data.comments;
 };
+
+export const highestVotedComments = async () => {
+  const url = new URL(`${API}/comments/highest`);
+  const response = await axios.get(url);
+
+  if (response.status !== 200) {
+    throw new Error("Get Highest Voted Comments failed");
+  }
+
+  return response.data.comments;
+};

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { getArticle } from "../../api/articles";
-import Loading from "../Loading";
+import Loading, { LOADING, LOADED } from "../Loading";
 import ArticleCard from "../ArticleCard";
 import CommentList from "../CommentList";
 
@@ -19,8 +19,10 @@ const Article = ({ setIsLoading, setError }) => {
       .catch((err) => {
         setError({ ...err, message: "Failed to load article" });
       })
-      .finally(() => setIsLoading(false));
-  }, [article_id, setArticle, setIsLoading, setError]);
+      .finally(() => {
+        setIsLoading(LOADED);
+      });
+  }, [article_id, setArticle, setError, setIsLoading]);
 
   return (
     <ArticleCard article={article}>
@@ -29,4 +31,4 @@ const Article = ({ setIsLoading, setError }) => {
   );
 };
 
-export default Loading(Article, "Loading article...", true);
+export default Loading(Article, "Loading article...", LOADING);

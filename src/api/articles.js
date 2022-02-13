@@ -27,6 +27,7 @@ export const getArticles = async (author, topic, sort, order) => {
 };
 
 export const getArticle = async (article_id) => {
+  console.log(article_id);
   const url = new URL(`${API}/articles/${article_id}`);
   const response = await axios.get(url);
 
