@@ -29,7 +29,11 @@ const SortAndFilterLink = ({ isCurrent, param, title, linkType }) => {
       throw new Error("Invalid link type!");
   }
 
-  return <Link to={to}>{title}</Link>;
+  return (
+    <Link className={`tag mx-2 ${isCurrent ? "is-dark" : ""}`} to={to}>
+      {title}
+    </Link>
+  );
 };
 
 export default SortAndFilterLink;

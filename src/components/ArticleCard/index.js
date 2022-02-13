@@ -1,7 +1,9 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import * as dayjs from "dayjs";
+import { Link } from "react-router-dom";
 
+import SortAndFilterLink from "../SortAndFilterLink";
 import VoteControls from "../VoteControls";
 import DeleteArticle from "../DeleteArticle";
 
@@ -21,11 +23,47 @@ const ArticleCard = ({
   return (
     <article>
       <header>
-        <span>{topic}</span> - {title}
+        {children ? (
+          <nav className="breadcrumb">
+            <ul>
+              <li>
+                <Link
+                  to={"/author/all/topic/all/sort-by/created_at/order/desc"}
+                >
+                  Articles
+                </Link>
+              </li>
+              <li>
+                <SortAndFilterLink
+                  param={topic}
+                  title={
+                    topic ? topic[0].toUpperCase() + topic.substring(1) : ""
+                  }
+                  linkType={"topic"}
+                />
+              </li>
+              <li>
+                <Link to={`/articles/${article_id}`}>{title}</Link>
+              </li>
+            </ul>
+          </nav>
+        ) : (
+          <></>
+        )}
+        <h1 className="title">{title}</h1>
+        <h2 className="subtitle">
+          Posted by{" "}
+          <SortAndFilterLink
+            param={author}
+            title={author}
+            linkType={"author"}
+          />{" "}
+          on{" "}
+          {`${dayjs(created_at).format("ddd D MMM YYYY")} at ${dayjs(
+            created_at
+          ).format("HH:mm")}`}
+        </h2>
       </header>
-      <div>{`${dayjs(created_at).format("ddd D MMM YYYY")} at ${dayjs(
-        created_at
-      ).format("HH:mm")}`}</div>
       <div>
         {body ? (
           <VoteControls
@@ -45,12 +83,11 @@ const ArticleCard = ({
         <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
         <DeleteArticle article_id={article_id} author={author} />
       </main>
-      <div>- By {author} -</div>
       {body ? (
-        <details>
-          <summary>View {comment_count} Comments</summary>
+        <>
+          <h2 className="subtitle mb-0">Comments</h2>
           {children}
-        </details>
+        </>
       ) : (
         <></>
       )}

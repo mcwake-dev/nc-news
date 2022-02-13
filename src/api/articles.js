@@ -100,3 +100,14 @@ export const mostRecentArticles = async () => {
 
   return response.data.articles;
 };
+
+export const highestVotedArticles = async () => {
+  const url = new URL(`${API}/articles/highest`);
+  const response = await axios.get(url);
+
+  if (response.status !== 200) {
+    throw new Error("Get Recent Articles failed!");
+  }
+
+  return response.data.articles;
+};

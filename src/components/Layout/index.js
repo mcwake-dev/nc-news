@@ -4,6 +4,7 @@ import { Link, Outlet } from "react-router-dom";
 import RecentComments from "../RecentComments";
 import RecentArticles from "../RecentArticles";
 import HighestVotedComments from "../HighestVotedComments";
+import HighestVotedArticles from "../HighestVotedArticles";
 
 const Layout = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -59,12 +60,13 @@ const Layout = () => {
         </div>
       </nav>
       <main className="main">
-        <section className="section columns">
+        <section className="ml-2 columns">
           <div className="column is-four-fifths">
             <Outlet />
           </div>
-          <div className="column is-one-fifth">
+          <div className="column is-one-fifth mt-5">
             <RecentArticles />
+            <HighestVotedArticles />
             <RecentComments />
             <HighestVotedComments />
           </div>
