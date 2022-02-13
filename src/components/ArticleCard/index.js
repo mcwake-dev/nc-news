@@ -1,9 +1,9 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import * as dayjs from "dayjs";
+
 import VoteControls from "../VoteControls";
 import DeleteArticle from "../DeleteArticle";
-import styles from "./ArticleCard.module.css";
 
 const ArticleCard = ({
   article: {
@@ -21,7 +21,7 @@ const ArticleCard = ({
   return (
     <article>
       <header>
-        <span className={styles.topic}>{topic}</span> - {title}
+        <span>{topic}</span> - {title}
       </header>
       <div>{`${dayjs(created_at).format("ddd D MMM YYYY")} at ${dayjs(
         created_at
@@ -40,11 +40,12 @@ const ArticleCard = ({
           </>
         )}
       </div>
-      <div className={styles.author}>- By {author} -</div>
+
       <main>
         <ReactMarkdown children={body} remarkPlugins={[remarkGfm]} />
         <DeleteArticle article_id={article_id} author={author} />
       </main>
+      <div>- By {author} -</div>
       {body ? (
         <details>
           <summary>View {comment_count} Comments</summary>

@@ -1,23 +1,32 @@
-import { Link } from "react-router-dom";
-
-import styles from "./Home.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.homeContainer}>
-      <div className={styles.blurb}>
-        <h1>nc news.</h1>
-        <p>A Reddit-like news site demonstrating:</p>
+    <section className="container has-text-centered">
+      <h1 className="title">
+        <i className="far fa-newspaper"></i>&nbsp;nc news.
+      </h1>
+      <h2 className="subtitle">A Reddit-like news site demonstrating:</h2>
+      <div className="content">
         <ul>
           <li>A modern React-powered front end using Hooks</li>
-          <li>Use of CSS3 and HTML5</li>
+          <li>Responsive UI using Bulma, HTML5 and CSS3</li>
           <li>Interaction with a Node.js/PostgreSQL REST API</li>
         </ul>
-        <Link to="/author/all/topic/all/sort-by/created_at/order/desc">
-          See the articles
-        </Link>
       </div>
-    </div>
+      <div className="has-text-centered">
+        <button
+          className="button"
+          onClick={(ev) =>
+            navigate("/author/all/topic/all/sort-by/created_at/order/desc")
+          }
+        >
+          See the articles
+        </button>
+      </div>
+    </section>
   );
 };
 

@@ -1,7 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 
-import styles from "./SortAndFilterLink.module.css";
-
 const SortAndFilterLink = ({ isCurrent, param, title, linkType }) => {
   const { author, topic, sort, order } = useParams();
   let to;
@@ -31,11 +29,7 @@ const SortAndFilterLink = ({ isCurrent, param, title, linkType }) => {
       throw new Error("Invalid link type!");
   }
 
-  return (
-    <Link className={isCurrent ? styles.current : ""} to={to}>
-      {title}
-    </Link>
-  );
+  return <Link to={to}>{title}</Link>;
 };
 
 export default SortAndFilterLink;

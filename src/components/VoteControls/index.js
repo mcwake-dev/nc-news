@@ -4,9 +4,8 @@ import { setVotes as setCommentVotes } from "../../api/comments";
 import { setVotes as setArticleVotes } from "../../api/articles";
 import Loading from "../Loading";
 import Authenticated, { AUTHENTICATED_ONLY } from "../Authenticated";
-import styles from "./VoteControls.module.css";
 
-const VoteControls = ({ item_id, votes, voteType, setIsLoading, setError }) => {
+const VoteControls = ({ item_id, votes, voteType, setError, setIsLoading }) => {
   const [currentVotes, setCurrentVotes] = useState(0);
 
   const updateVotes = (vote) => {
@@ -24,16 +23,11 @@ const VoteControls = ({ item_id, votes, voteType, setIsLoading, setError }) => {
     }
 
     setCurrentVotes((current) => current + vote);
-    setIsLoading(true);
     setError(null);
-    voteApi(item_id, vote)
-      .catch((err) => {
-        setError(err);
-        setCurrentVotes((current) => current - vote);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    voteApi(item_id, vote).catch((err) => {
+      setError(err);
+      setCurrentVotes((current) => current - vote);
+    });
   };
 
   useEffect(() => {
@@ -41,7 +35,7 @@ const VoteControls = ({ item_id, votes, voteType, setIsLoading, setError }) => {
   }, [votes, setIsLoading]);
 
   return (
-    <div className={styles.voteControls}>
+    <div>
       <button onClick={(ev) => updateVotes(1)}>👍</button>
       <span>{currentVotes}</span>
       <button onClick={(ev) => updateVotes(-1)}>👎</button>

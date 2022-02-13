@@ -17,7 +17,7 @@ const Article = ({ setIsLoading, setError }) => {
         setArticle(newArticle);
       })
       .catch((err) => {
-        setError(err);
+        setError({ ...err, message: "Failed to load article" });
       })
       .finally(() => setIsLoading(false));
   }, [article_id, setArticle, setIsLoading, setError]);

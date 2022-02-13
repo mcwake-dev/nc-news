@@ -7,9 +7,9 @@ import { postComment } from "../../api/articles";
 const CommentForm = ({
   article_id,
   setIsLoading,
-  setError,
   setComments,
   user: { username },
+  setError,
 }) => {
   const [body, setBody] = useState("");
 

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "../../api/users";
 import Authenticated, { UNAUTHENTICATED_ONLY } from "../Authenticated";
 import Loading, { LOADING, LOADED } from "../Loading";
-import styles from "./Login.module.css";
 
 const Login = ({ setIsLoading, setError, setUser }) => {
   const [username, setUsername] = useState("");
@@ -28,9 +27,9 @@ const Login = ({ setIsLoading, setError, setUser }) => {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <h2>Log In</h2>
-      <div className={styles.loginForm}>
+    <details>
+      <summary>Log In</summary>
+      <div>
         <label htmlFor="username">Username: </label>
         <input
           type="text"
@@ -49,7 +48,7 @@ const Login = ({ setIsLoading, setError, setUser }) => {
           Log In
         </button>
       </div>
-    </div>
+    </details>
   );
 };
 

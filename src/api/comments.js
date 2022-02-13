@@ -22,3 +22,14 @@ export const deleteComment = async (comment_id) => {
 
   return response.status;
 };
+
+export const mostRecentComments = async () => {
+  const url = new URL(`${API}/comments/recent`);
+  const response = await axios.get(url);
+
+  if (response.status !== 200) {
+    throw new Error("Get Recent Comments failed");
+  }
+
+  return response.data.comments;
+};

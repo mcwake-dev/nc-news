@@ -6,7 +6,6 @@ import { VALID_ORDERS, VALID_SORTS } from "../../api/constants";
 import Loading from "../Loading";
 import SortAndFilterLink from "../SortAndFilterLink";
 import { getUsers } from "../../api/users";
-import styles from "./ArticleControls.module.css";
 
 const ArticleControls = ({ setIsLoading, setError }) => {
   const { author, topic, sort, order } = useParams();
@@ -20,7 +19,7 @@ const ArticleControls = ({ setIsLoading, setError }) => {
         setTopics(newTopics);
       })
       .catch((err) => {
-        setError(err);
+        setError({ ...err, message: "Failed to load articles" });
       })
       .finally(() => {
         setIsLoading(false);
@@ -34,7 +33,7 @@ const ArticleControls = ({ setIsLoading, setError }) => {
         setAuthors(newAuthors);
       })
       .catch((err) => {
-        setError(err);
+        setError({ ...err, message: "Failed to load authors" });
       })
       .finally(() => {
         setIsLoading(false);

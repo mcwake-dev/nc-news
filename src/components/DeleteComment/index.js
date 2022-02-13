@@ -27,8 +27,6 @@ const DeleteComment = ({
       });
   };
 
-  console.log(author, username, author === username);
-
   if (author === username) {
     return (
       <button onClick={(ev) => deleteMyComment()}>Delete My Comment</button>
