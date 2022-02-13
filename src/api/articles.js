@@ -89,3 +89,14 @@ export const postArticle = async (author, title, body, topic) => {
 
   return response.data.article;
 };
+
+export const mostRecentArticles = async () => {
+  const url = new URL(`${API}/articles/recent`);
+  const response = await axios.get(url);
+
+  if (response.status !== 200) {
+    throw new Error("Get Recent Articles failed!");
+  }
+
+  return response.data.articles;
+};

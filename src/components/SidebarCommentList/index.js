@@ -5,7 +5,7 @@ const SidebarCommentList = ({ comments, title }) => {
     <section>
       <h2 className="subtitle">{title}</h2>
       {comments.map(({ comment_id, body, author, article_id, title }) => (
-        <article key={comment_id} className={"mb-4"}>
+        <article key={comment_id} className="mb-4">
           <Link to={`/articles/${article_id}`}>{title}</Link>
           <br />
           <b>{author}</b> commented: <br />

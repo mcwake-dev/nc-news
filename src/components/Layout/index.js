@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import RecentComments from "../RecentComments";
+import RecentArticles from "../RecentArticles";
 import HighestVotedComments from "../HighestVotedComments";
 
 const Layout = () => {
@@ -63,6 +64,7 @@ const Layout = () => {
             <Outlet />
           </div>
           <div className="column is-one-fifth">
+            <RecentArticles />
             <RecentComments />
             <HighestVotedComments />
           </div>
