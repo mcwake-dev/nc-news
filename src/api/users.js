@@ -14,3 +14,10 @@ export const getUser = async (username) => {
 
   return response.data.user;
 };
+
+export const userExists = async (username) => {
+  const url = new URL(`${API}/users/exists/${username}`);
+  const response = await axios.get(url);
+
+  return response.data.exists;
+};
